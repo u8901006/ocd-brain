@@ -8,6 +8,7 @@ neuroscience, neuropsychiatry, and psychopharmacology.
 import json
 import sys
 import argparse
+import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from urllib.request import urlopen, Request
@@ -82,119 +83,146 @@ def build_batch_query(journals: list[str], days: int = 7) -> str:
 def search_papers_batch(days: int = 7, retmax_per_batch: int = 20) -> list[str]:
     all_pmids = []
     seen = set()
-    for batch in JOURNAL_BATCHES:
+    for i, batch in enumerate(JOURNAL_BATCHES):
+        if i > 0:
+            time.sleep(1)
         query = build_batch_query(batch, days=days)
         params = f"?db=pubmed&term={quote_plus(query)}&retmax={retmax_per_batch}&sort=date&retmode=json"
         url = PUBMED_SEARCH + params
-        try:
-            req = Request(url, headers=HEADERS)
-            with urlopen(req, timeout=30) as resp:
-                data = json.loads(resp.read().decode())
-            pmids = data.get("esearchresult", {}).get("idlist", [])
-            for pmid in pmids:
-                if pmid not in seen:
-                    seen.add(pmid)
-                    all_pmids.append(pmid)
-            print(
-                f"[INFO] Batch found {len(pmids)} papers (total unique: {len(all_pmids)})",
-                file=sys.stderr,
-            )
-        except Exception as e:
-            print(f"[ERROR] PubMed search batch failed: {e}", file=sys.stderr)
-            continue
+        for attempt in range(3):
+            try:
+                req = Request(url, headers=HEADERS)
+                with urlopen(req, timeout=30) as resp:
+                    data = json.loads(resp.read().decode())
+                pmids = data.get("esearchresult", {}).get("idlist", [])
+                for pmid in pmids:
+                    if pmid not in seen:
+                        seen.add(pmid)
+                        all_pmids.append(pmid)
+                print(
+                    f"[INFO] Batch {i + 1}/{len(JOURNAL_BATCHES)}: found {len(pmids)} papers (total unique: {len(all_pmids)})",
+                    file=sys.stderr,
+                )
+                break
+            except Exception as e:
+                print(
+                    f"[WARN] PubMed search batch {i + 1} attempt {attempt + 1} failed: {e}",
+                    file=sys.stderr,
+                )
+                if attempt < 2:
+                    time.sleep(3 * (attempt + 1))
+                continue
     return all_pmids
 
 
 def fetch_details(pmids: list[str]) -> list[dict]:
     if not pmids:
         return []
-    ids = ",".join(pmids)
-    params = f"?db=pubmed&id={ids}&retmode=xml"
-    url = PUBMED_FETCH + params
-    try:
-        req = Request(url, headers=HEADERS)
-        with urlopen(req, timeout=60) as resp:
-            xml_data = resp.read().decode()
-    except Exception as e:
-        print(f"[ERROR] PubMed fetch failed: {e}", file=sys.stderr)
-        return []
-
-    papers = []
-    try:
-        root = ET.fromstring(xml_data)
-        for article in root.findall(".//PubmedArticle"):
-            medline = article.find(".//MedlineCitation")
-            art = medline.find(".//Article") if medline else None
-            if art is None:
-                continue
-
-            title_el = art.find(".//ArticleTitle")
-            title = (
-                (title_el.text or "").strip()
-                if title_el is not None and title_el.text
-                else ""
+    chunk_size = 15
+    all_papers = []
+    for chunk_start in range(0, len(pmids), chunk_size):
+        if chunk_start > 0:
+            time.sleep(1)
+        chunk = pmids[chunk_start : chunk_start + chunk_size]
+        ids = ",".join(chunk)
+        params = f"?db=pubmed&id={ids}&retmode=xml"
+        url = PUBMED_FETCH + params
+        xml_data = None
+        for attempt in range(3):
+            try:
+                req = Request(url, headers=HEADERS)
+                with urlopen(req, timeout=60) as resp:
+                    xml_data = resp.read().decode()
+                break
+            except Exception as e:
+                print(
+                    f"[WARN] PubMed fetch attempt {attempt + 1} failed: {e}",
+                    file=sys.stderr,
+                )
+                if attempt < 2:
+                    time.sleep(5 * (attempt + 1))
+        if xml_data is None:
+            print(
+                f"[ERROR] PubMed fetch failed for chunk starting at {chunk_start}",
+                file=sys.stderr,
             )
+            continue
 
-            abstract_parts = []
-            for abs_el in art.findall(".//Abstract/AbstractText"):
-                label = abs_el.get("Label", "")
-                text = "".join(abs_el.itertext()).strip()
-                if label and text:
-                    abstract_parts.append(f"{label}: {text}")
-                elif text:
-                    abstract_parts.append(text)
-            abstract = " ".join(abstract_parts)[:2000]
+        try:
+            root = ET.fromstring(xml_data)
+            for article in root.findall(".//PubmedArticle"):
+                medline = article.find(".//MedlineCitation")
+                art = medline.find(".//Article") if medline else None
+                if art is None:
+                    continue
 
-            journal_el = art.find(".//Journal/Title")
-            journal = (
-                (journal_el.text or "").strip()
-                if journal_el is not None and journal_el.text
-                else ""
-            )
+                title_el = art.find(".//ArticleTitle")
+                title = (
+                    (title_el.text or "").strip()
+                    if title_el is not None and title_el.text
+                    else ""
+                )
 
-            pub_date = art.find(".//PubDate")
-            date_str = ""
-            if pub_date is not None:
-                year = pub_date.findtext("Year", "")
-                month = pub_date.findtext("Month", "")
-                day = pub_date.findtext("Day", "")
-                parts = [p for p in [year, month, day] if p]
-                date_str = " ".join(parts)
+                abstract_parts = []
+                for abs_el in art.findall(".//Abstract/AbstractText"):
+                    label = abs_el.get("Label", "")
+                    text = "".join(abs_el.itertext()).strip()
+                    if label and text:
+                        abstract_parts.append(f"{label}: {text}")
+                    elif text:
+                        abstract_parts.append(text)
+                abstract = " ".join(abstract_parts)[:2000]
 
-            pmid_el = medline.find(".//PMID")
-            pmid = pmid_el.text if pmid_el is not None else ""
-            link = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/" if pmid else ""
+                journal_el = art.find(".//Journal/Title")
+                journal = (
+                    (journal_el.text or "").strip()
+                    if journal_el is not None and journal_el.text
+                    else ""
+                )
 
-            keywords = []
-            for kw in medline.findall(".//KeywordList/Keyword"):
-                if kw.text:
-                    keywords.append(kw.text.strip())
+                pub_date = art.find(".//PubDate")
+                date_str = ""
+                if pub_date is not None:
+                    year = pub_date.findtext("Year", "")
+                    month = pub_date.findtext("Month", "")
+                    day = pub_date.findtext("Day", "")
+                    parts = [p for p in [year, month, day] if p]
+                    date_str = " ".join(parts)
 
-            authors = []
-            for author in art.findall(".//AuthorList/Author")[:6]:
-                last = author.findtext("LastName", "")
-                fore = author.findtext("ForeName", "")
-                if last:
-                    authors.append(f"{last} {fore}".strip())
-            if len(art.findall(".//AuthorList/Author")) > 6:
-                authors.append("et al.")
+                pmid_el = medline.find(".//PMID")
+                pmid = pmid_el.text if pmid_el is not None else ""
+                link = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/" if pmid else ""
 
-            papers.append(
-                {
-                    "pmid": pmid,
-                    "title": title,
-                    "authors": "; ".join(authors),
-                    "journal": journal,
-                    "date": date_str,
-                    "abstract": abstract,
-                    "url": link,
-                    "keywords": keywords,
-                }
-            )
-    except ET.ParseError as e:
-        print(f"[ERROR] XML parse failed: {e}", file=sys.stderr)
+                keywords = []
+                for kw in medline.findall(".//KeywordList/Keyword"):
+                    if kw.text:
+                        keywords.append(kw.text.strip())
 
-    return papers
+                authors = []
+                for author in art.findall(".//AuthorList/Author")[:6]:
+                    last = author.findtext("LastName", "")
+                    fore = author.findtext("ForeName", "")
+                    if last:
+                        authors.append(f"{last} {fore}".strip())
+                if len(art.findall(".//AuthorList/Author")) > 6:
+                    authors.append("et al.")
+
+                all_papers.append(
+                    {
+                        "pmid": pmid,
+                        "title": title,
+                        "authors": "; ".join(authors),
+                        "journal": journal,
+                        "date": date_str,
+                        "abstract": abstract,
+                        "url": link,
+                        "keywords": keywords,
+                    }
+                )
+        except ET.ParseError as e:
+            print(f"[ERROR] XML parse failed for chunk: {e}", file=sys.stderr)
+
+    return all_papers
 
 
 def main():
