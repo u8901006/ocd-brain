@@ -17,233 +17,92 @@ from urllib.parse import quote_plus
 PUBMED_SEARCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 PUBMED_FETCH = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 
-JOURNALS = [
-    "Journal of Obsessive-Compulsive and Related Disorders",
-    "American Journal of Psychiatry",
-    "JAMA Psychiatry",
-    "British Journal of Psychiatry",
-    "Psychological Medicine",
-    "Molecular Psychiatry",
-    "Biological Psychiatry",
-    "Biiological Psychiatry Cognitive Neuroscience and Neuroimaging",
-    "Journal of Clinical Psychiatry",
-    "European Psychiatry",
-    "CNS Spectrums",
-    "Psychiatry Research",
-    "Journal of Psychiatric Research",
-    "Comprehensive Psychiatry",
-    "International Clinical Psychopharmacology",
-    "European Neuropsychopharmacology",
-    "Neuropsychopharmacology",
-    "Acta Psychiatrica Scandinavica",
-    "World Psychiatry",
-    "BJPsych Open",
-    "Frontiers in Psychiatry",
-    "BMC Psychiatry",
-    "Behaviour Research and Therapy",
-    "Journal of Anxiety Disorders",
-    "Cognitive Behaviour Therapy",
-    "Cognitive Therapy and Research",
-    "Clinical Psychology Review",
-    "Journal of Consulting and Clinical Psychology",
-    "Behavior Therapy",
-    "Cognitive and Behavioral Practice",
-    "Journal of Behavior Therapy and Experimental Psychiatry",
-    "Behavioural and Cognitive Psychotherapy",
-    "Psychotherapy and Psychosomatics",
-    "Clinical Child and Family Psychology Review",
-    "Journal of Child Psychology and Psychiatry",
-    "Child Psychiatry and Human Development",
-    "NeuroImage Clinical",
-    "Neuroscience and Biobehavioral Reviews",
-    "Progress in Neuro-Psychopharmacology and Biological Psychiatry",
-    "Human Brain Mapping",
-    "Cerebral Cortex",
-    "Brain Stimulation",
-    "Translational Psychiatry",
-    "European Archives of Psychiatry and Clinical Neuroscience",
-    "Frontiers in Behavioral Neuroscience",
-    "Frontiers in Human Neuroscience",
-]
-
-OCD_KEYWORDS_CORE = [
-    '"obsessive-compulsive disorder"',
-    '"obsessive compulsive disorder"',
-    "OCD",
-    '"obsessive compulsive"',
-    '"obsessive-compulsive and related disorders"',
-    "OCRD",
-    "compulsivity",
-    "obsessions",
-    "compulsions",
-    '"intrusive thoughts"',
-]
-
-OCD_KEYWORDS_SYMPTOMS = [
-    '"intrusive thoughts"',
-    '"mental rituals"',
-    "checking",
-    "washing",
-    "contamination",
-    "symmetry",
-    "ordering",
-    '"taboo obsessions"',
-    '"unacceptable thoughts"',
-    "scrupulosity",
-    '"harm obsessions"',
-    '"sexual obsessions"',
-    '"religious obsessions"',
-    '"somatic obsessions"',
-    "hoarding",
-    '"body dysmorphic disorder"',
-    "trichotillomania",
-    '"excoriation disorder"',
-]
-
-OCD_KEYWORDS_ASSESSMENT = [
-    '"Yale-Brown Obsessive Compulsive Scale"',
-    "Y-BOCS",
-    '"Children Yale-Brown Obsessive Compulsive Scale"',
-    "CY-BOCS",
-    '"Dimensional Obsessive-Compulsive Scale"',
-    "DOCS",
-    '"obsessive beliefs"',
-    '"family accommodation"',
-    '"symptom dimensions"',
-    '"treatment response"',
-    "remission",
-    "relapse",
-]
-
-OCD_KEYWORDS_TREATMENT = [
-    '"cognitive behavioral therapy"',
-    "CBT",
-    '"exposure and response prevention"',
-    "ERP",
-    '"exposure therapy"',
-    '"inhibitory learning"',
-    '"metacognitive therapy"',
-    '"acceptance and commitment therapy"',
-    "ACT",
-    '"family-based CBT"',
-    "teletherapy",
-    '"internet-delivered CBT"',
-    "SSRI",
-    "clomipramine",
-    "fluoxetine",
-    "sertraline",
-    "fluvoxamine",
-    "escitalopram",
-    "paroxetine",
-    "augmentation",
-    '"antipsychotic augmentation"',
-    "aripiprazole",
-    "risperidone",
-    '"glutamate-modulating"',
-    "memantine",
-    "lamotrigine",
-]
-
-OCD_KEYWORDS_NEUROSCIENCE = [
-    '"cortico-striato-thalamo-cortical"',
-    "CSTC",
-    '"orbitofrontal cortex"',
-    '"anterior cingulate cortex"',
-    "striatum",
-    "caudate",
-    '"resting-state connectivity"',
-    '"functional connectivity"',
-    "fMRI",
-    "DTI",
-    '"error monitoring"',
-    '"habit learning"',
-    '"cognitive control"',
-    '"response inhibition"',
-    "biomarkers",
-    "genetics",
-    '"polygenic risk"',
-    "inflammation",
-    "glutamate",
-    "serotonin",
-]
-
-OCD_KEYWORDS_POPULATIONS = [
-    '"pediatric OCD"',
-    '"child OCD"',
-    '"adolescent OCD"',
-    '"perinatal OCD"',
-    '"postpartum OCD"',
-    '"tic-related OCD"',
-    '"autism and OCD"',
-    '"OCD and ADHD"',
-    '"OCD and depression"',
-    '"OCD and suicidality"',
-    '"treatment-resistant OCD"',
-    '"severe OCD"',
-]
-
-OCD_KEYWORDS_ADVANCED = [
-    '"treatment-resistant"',
-    "refractory",
-    "DBS",
-    '"deep brain stimulation"',
-    "rTMS",
-    '"brain stimulation"',
-    "neuromodulation",
-    "neuroimaging",
-    "connectivity",
-    "biomarker",
-    "genetics",
-    "glutamate",
-    "habit",
+JOURNAL_BATCHES = [
+    [
+        "J Obsessive Compuls Relat Disord",
+        "Am J Psychiatry",
+        "JAMA Psychiatry",
+        "Br J Psychiatry",
+        "Psychol Med",
+        "Mol Psychiatry",
+        "Biol Psychiatry",
+        "J Clin Psychiatry",
+        "Eur Psychiatry",
+        "CNS Spectr",
+    ],
+    [
+        "Psychiatry Res",
+        "J Psychiatr Res",
+        "Compr Psychiatry",
+        "Neuropsychopharmacology",
+        "Acta Psychiatr Scand",
+        "World Psychiatry",
+        "BJPsych Open",
+        "Front Psychiatry",
+        "BMC Psychiatry",
+        "Transl Psychiatry",
+    ],
+    [
+        "Behav Res Ther",
+        "J Anxiety Disord",
+        "Cogn Behav Ther",
+        "Behav Ther",
+        "J Behav Ther Exp Psychiatry",
+        "Behav Cogn Psychother",
+        "Cogn Behav Pract",
+        "J Consult Clin Psychol",
+        "Clin Psychol Rev",
+        "Psychother Psychosom",
+    ],
+    [
+        "Neuroimage Clin",
+        "Brain Stimul",
+        "Neurosci Biobehav Rev",
+        "Eur Arch Psychiatry Clin Neurosci",
+        "Biol Psychiatry Cogn Neurosci Neuroimaging",
+        "Int Clin Psychopharmacol",
+        "Eur Neuropsychopharmacol",
+        "J Child Psychol Psychiatry",
+        "Hum Brain Mapp",
+        "Cereb Cortex",
+    ],
 ]
 
 HEADERS = {"User-Agent": "OCDBrainBot/1.0 (research aggregator)"}
 
 
-def build_query(days: int = 7, max_journals: int = 20) -> str:
-    journal_part = " OR ".join([f'"{j}"[Journal]' for j in JOURNALS[:max_journals]])
-
-    ocd_core = " OR ".join([f"{k}[Title/Abstract]" for k in OCD_KEYWORDS_CORE])
-    ocd_symptoms = " OR ".join([f"{k}[Title/Abstract]" for k in OCD_KEYWORDS_SYMPTOMS])
-    ocd_treatment = " OR ".join(
-        [f"{k}[Title/Abstract]" for k in OCD_KEYWORDS_TREATMENT]
-    )
-    ocd_context = " OR ".join(
-        [
-            f"{k}[Title/Abstract]"
-            for k in OCD_KEYWORDS_NEUROSCIENCE
-            + OCD_KEYWORDS_POPULATIONS
-            + OCD_KEYWORDS_ADVANCED
-        ]
-    )
-
+def build_batch_query(journals: list[str], days: int = 7) -> str:
+    journal_part = " OR ".join([f'"{j}"[Journal]' for j in journals])
+    ocd_core = '("obsessive-compulsive disorder"[Title/Abstract] OR OCD[Title/Abstract] OR "obsessive compulsive"[Title/Abstract] OR OCRD[Title/Abstract] OR compulsivity[Title/Abstract])'
     lookback = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y/%m/%d")
     date_part = f'"{lookback}"[Date - Publication] : "3000"[Date - Publication]'
-
-    query = (
-        f"(({journal_part})) AND "
-        f"({ocd_core} OR "
-        f"({ocd_symptoms}) OR "
-        f"(({ocd_core}) AND ({ocd_treatment} OR {ocd_context}))) AND "
-        f"{date_part}"
-    )
-    return query
+    return f"({journal_part}) AND {ocd_core} AND {date_part}"
 
 
-def search_papers(query: str, retmax: int = 50) -> list[str]:
-    params = (
-        f"?db=pubmed&term={quote_plus(query)}&retmax={retmax}&sort=date&retmode=json"
-    )
-    url = PUBMED_SEARCH + params
-    try:
-        req = Request(url, headers=HEADERS)
-        with urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode())
-        return data.get("esearchresult", {}).get("idlist", [])
-    except Exception as e:
-        print(f"[ERROR] PubMed search failed: {e}", file=sys.stderr)
-        return []
+def search_papers_batch(days: int = 7, retmax_per_batch: int = 20) -> list[str]:
+    all_pmids = []
+    seen = set()
+    for batch in JOURNAL_BATCHES:
+        query = build_batch_query(batch, days=days)
+        params = f"?db=pubmed&term={quote_plus(query)}&retmax={retmax_per_batch}&sort=date&retmode=json"
+        url = PUBMED_SEARCH + params
+        try:
+            req = Request(url, headers=HEADERS)
+            with urlopen(req, timeout=30) as resp:
+                data = json.loads(resp.read().decode())
+            pmids = data.get("esearchresult", {}).get("idlist", [])
+            for pmid in pmids:
+                if pmid not in seen:
+                    seen.add(pmid)
+                    all_pmids.append(pmid)
+            print(
+                f"[INFO] Batch found {len(pmids)} papers (total unique: {len(all_pmids)})",
+                file=sys.stderr,
+            )
+        except Exception as e:
+            print(f"[ERROR] PubMed search batch failed: {e}", file=sys.stderr)
+            continue
+    return all_pmids
 
 
 def fetch_details(pmids: list[str]) -> list[dict]:
@@ -348,14 +207,14 @@ def main():
     parser.add_argument("--json", action="store_true", help="Output as JSON")
     args = parser.parse_args()
 
-    query = build_query(days=args.days)
+    query = build_batch_query(JOURNAL_BATCHES[0], days=args.days)
     print(
-        f"[INFO] Searching PubMed for OCD papers from last {args.days} days...",
+        f"[INFO] Searching PubMed for OCD papers from last {args.days} days (batched)...",
         file=sys.stderr,
     )
 
-    pmids = search_papers(query, retmax=args.max_papers)
-    print(f"[INFO] Found {len(pmids)} papers", file=sys.stderr)
+    pmids = search_papers_batch(days=args.days, retmax_per_batch=args.max_papers // 4)
+    print(f"[INFO] Found {len(pmids)} unique papers total", file=sys.stderr)
 
     if not pmids:
         print("NO_CONTENT", file=sys.stderr)
