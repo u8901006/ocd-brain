@@ -9,6 +9,7 @@ import json
 import sys
 import os
 import re
+import glob
 import time
 import argparse
 from datetime import datetime, timezone, timedelta
@@ -88,6 +89,40 @@ OCD_TAGS = [
     "臨床試驗",
     "系統性回顧/統合分析",
 ]
+
+
+def collect_excluded_pmids(days: int = 7) -> set[str]:
+    excluded = set()
+    tz_utc = timezone.utc
+    cutoff = datetime.now(tz_utc) - timedelta(days=days)
+    html_files = sorted(glob.glob("docs/ocd-*.html"), reverse=True)
+    for f in html_files[:days]:
+        basename = os.path.basename(f)
+        date_part = basename.replace("ocd-", "").replace(".html", "")
+        try:
+            file_date = datetime.strptime(date_part, "%Y-%m-%d").replace(tzinfo=tz_utc)
+            if file_date < cutoff:
+                continue
+        except ValueError:
+            continue
+        try:
+            with open(f, "r", encoding="utf-8") as fh:
+                content = fh.read()
+            pmids = re.findall(r"https?://pubmed\.ncbi\.nlm\.nih\.gov/(\d+)/", content)
+            if pmids:
+                print(
+                    f"[INFO] Excluding {len(pmids)} PMIDs from {basename}",
+                    file=sys.stderr,
+                )
+                excluded.update(pmids)
+        except Exception as e:
+            print(f"[WARN] Could not read {f}: {e}", file=sys.stderr)
+    if excluded:
+        print(
+            f"[INFO] Total excluded PMIDs (last {days} days): {len(excluded)}",
+            file=sys.stderr,
+        )
+    return excluded
 
 
 def load_papers(input_path: str) -> dict:
@@ -567,6 +602,17 @@ def main():
         sys.exit(1)
 
     papers_data = load_papers(args.input)
+    excluded_pmids = collect_excluded_pmids(days=7)
+    if papers_data and papers_data.get("papers") and excluded_pmids:
+        before = len(papers_data["papers"])
+        papers_data["papers"] = [
+            p for p in papers_data["papers"] if p.get("pmid", "") not in excluded_pmids
+        ]
+        papers_data["count"] = len(papers_data["papers"])
+        print(
+            f"[INFO] Dedup: {before} -> {len(papers_data['papers'])} papers (removed {before - len(papers_data['papers'])} duplicates)",
+            file=sys.stderr,
+        )
     if not papers_data or not papers_data.get("papers"):
         print("[WARN] No papers found, generating empty report", file=sys.stderr)
         tz_taipei = timezone(timedelta(hours=8))
