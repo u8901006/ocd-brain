@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OCD Brain · 強迫症文獻日報 · 2026年4月30日</title>
+<meta name="description" content="2026年4月30日 強迫症 (OCD) 文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 52px; height: 52px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 120px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.3s both; }
+  .clinic-links { display: flex; flex-direction: column; gap: 12px; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-info { flex: 1; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 80px; font-size: 11px; } .clinic-links { gap: 8px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🧠</div>
+    <div class="header-text">
+      <h1>OCD Brain · 強迫症文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年4月30日</span>
+        <span class="badge badge-count">📊 16 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + Zhipu AI</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日 OCD 文獻趨勢</h2>
+    <p class="summary-text">今日OCD文獻涵蓋兒少治療、自殺風險評估及新興神經調控機制等多面向議題，亮點包括兒少OCD的整合性回顧強力支持ERP為首選治療，以及自殺意念研究首次將雌二醇（E2）列為潛在生物標記；此外，低強度CBT在健保限制下的實證效果，為資源受限的臨床環境提供重要參考。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">🧒</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>兒童及青少年強迫症治療的現有證據：整合性回顧</h3>
+          <p class="journal-source">Journal of behavior therapy and experimental psychiatry · Current state of the evidence on treatments for obsessive-compulsive disorder in children and adolescents: An umbrella review.</p>
+          <p>本整合性回顧納入28篇系統性回顧與統合分析（共24,762名參與者），確認CBT尤其是ERP為兒少OCD最有效的第一線治療，SSRI具中度療效，嚴重個案可考慮合併用藥，網路CBT為新興趨勢。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">18歲以下之兒童及青少年強迫症患者（共24,762名參與者）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">各類治療介入（CBT/ERP、SSRI藥物治療、網路CBT等）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安慰劑、等待名單、常規照護或其他 active treatments</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">OCD症狀減輕程度（以Y-BOCS等量表評估）及長期療效維持</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">兒少強迫症</span><span class="tag">暴露與反應預防</span><span class="tag">ERP</span><span class="tag">CBT</span><span class="tag">SSRI</span><span class="tag">系統性回顧/統合分析</span><span class="tag">網路治療</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41762804/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">⚠️</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>強迫症患者主動自殺意念的生物心理社會相關因素</h3>
+          <p class="journal-source">Psychiatry research · Biopsychosocial correlates of active suicidal ideation in obsessive-compulsive disorder.</p>
+          <p>33.3%的住院OCD患者有主動自殺意念，焦慮嚴重度、疾病洞察力及雌二醇（E2）濃度為關鍵預測因子，E2在網路分析中顯示最高中心性，男性患者尤為顯著，為自殺風險評估提供全新生物標記視角。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">114名住院強迫症患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">生物心理社會因素之整合性評估（臨床症狀、激素水準、心理社會因素）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">有無主動自殺意念之患者比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">主動自殺意念的預測因子（AUC達0.769-0.857）</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">自殺風險</span><span class="tag">生物標記</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41734674/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">🏥</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>低強度認知行為治療在常規精神科實務中治療強迫症的有效性</h3>
+          <p class="journal-source">Psychiatry research · Effectiveness of low-intensity cognitive-behavioral therapy for obsessive-compulsive disorder in routine psychiatric practice.</p>
+          <p>在日本健保體系下（每年≤16次），低強度ERP-CBT平均12.2次即能顯著降低Y-BOCS分數並改善整體功能（GAF），證實在資源受限的實際臨床環境中，精簡版CBT仍具臨床意義的療效。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">18名成人門診強迫症患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">低強度ERP為基礎的CBT（每年≤16次，於日本健保框架下執行）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">治療前後自身對照（無對照組）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">Y-BOCS總分、GAF分數、狀態特質焦慮量表及自評憂鬱量表之變化</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">暴露與反應預防</span><span class="tag">ERP</span><span class="tag">CBT</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41916213/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">🌍</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>接納承諾治療對強迫症的跨文化系統性回顧與統合分析</h3>
+          <p class="journal-source">Journal of psychiatric research · Acceptance and commitment therapy for obsessive compulsive disorder: Cross-cultural systematic review and meta-analysis.</p>
+          <p>納入9篇RCT的統合分析顯示，ACT對OCD症狀具中度整體效果，優於不活躍對照與藥物治療，但與其他心理治療無顯著差異，東西方文化間療效無顯著差異，唯方法學嚴謹的RCT仍不足。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">強迫症患者（納入9篇RCT，涵蓋西方與東方文化背景）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">接納承諾治療（ACT）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">不活躍對照組、藥物治療、其他心理治療</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">OCD症狀嚴重度之減輕（效果量），東西方文化差異之次群組分析</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">接納承諾治療</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41719639/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">📋</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>兒童及青少年強迫症的症狀表現特徵分析</h3>
+          <p class="journal-source">Journal of psychiatric research · Characterizing symptom presentations in children and adolescents with obsessive-compulsive disorder.</p>
+          <p>使用更新版CY-BOCS-II評估101名兒少OCD患者，平均表現17種症狀，最常見為尋求保證、「剛好對」行為及對稱需求，77.2%跨及至少三個症狀維度，青少年症狀數顯著多於兒童，31.7%有儀式化迴避行為。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">101名7-17歲原發性診斷為OCD的兒童及青少年</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">以更新版CY-BOCS-II進行58項個別症狀之詳細評估</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">兒童組（≤12歲）與青少年組（≥13歲）之症狀表現差異比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">各項症狀之盛行率、症狀維度分布、年齡差異</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">兒少強迫症</span><span class="tag">強迫症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41719641/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#6</span>
+            <span class="emoji-icon">🧠</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>強迫症中的過度概括自傳體記憶：執行功能次成分的差異角色及對症狀嚴重度的影響</h3>
+          <p class="journal-source">Behaviour research and therapy · Overgeneral autobiographical memory in obsessive-compulsive disorder: the differential roles of executive function subcomponents and the impact on symptom severity.</p>
+          <p>OCD患者在控制憂鬱焦慮後，對情緒性線索（正向及負向）仍顯著呈現過度概括自傳體記憶，其中認知靈活度為最強預測因子，且認知靈活度缺損會調節OGM與症狀嚴重度之關係，指向新的治療靶點。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">112名OCD患者與101名健康對照者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">自傳體記憶測驗（AMT）與多項執行功能測驗（N-back、任務切換、停止信號作業）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">OCD組 vs 健康對照組之OGM差異；執行功能次成分對OGM之預測力比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">OGM程度、執行功能次成分表現、Y-BOCS症狀嚴重度及其交互作用</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">認知控制</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41844097/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#7</span>
+            <span class="emoji-icon">🧪</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>內源性大麻素系統在強迫症中的角色：範圍性回顧</h3>
+          <p class="journal-source">Neuroscience and biobehavioral reviews · The endocannabinoid system in obsessive-compulsive disorder: A scoping review.</p>
+          <p>本範圍性回顧納入13篇研究（12篇為前臨床），一致發現增強內源性大麻素系統活性可減輕強迫與習慣行為，抑制則加劇之，初步證據顯示OCD患者大腦ECS相關基因表達下降，可能調控額紋狀體迴路。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">OCD動物模型與極少量人類樣本（13篇研究）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">增強或抑制內源性大麻素系統（ECS）活性之操作</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">ECS增強 vs 抑制 vs 對照組之強迫行為變化</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">強迫/習慣行為之改變、ECS相關基因與受體表達量</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">CSTC 迴路</span><span class="tag">習慣學習</span><span class="tag">治療阻抗型OCD</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41871777/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📝</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>強迫症：常被漏診與誤診——勘誤聲明</h3>
+          <p class="journal-source">The British journal of psychiatry : the journal of mental science</p>
+          <p>此為先前關於OCD漏診與誤診文章的勘誤聲明，無新增研究內容。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42053196/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⚡</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>右側眼眶額葉皮質陰極tDCS增強亞臨床強迫症轉向模型基礎控制的能力</h3>
+          <p class="journal-source">Journal of psychiatric research</p>
+          <p>隨機偽刺激對照試驗發現，右側OFC陰極tDCS（抑制性）能顯著促進亞臨床OCD受試者在複雜任務中維持模型基礎控制策略，揭示tDCS改善強迫行為的新神經認知機制。</p>
+          <div class="card-footer">
+            <span class="tag">神經調控</span><span class="tag">眼眶額葉皮質</span><span class="tag">習慣學習</span><span class="tag">認知控制</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41785792/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🎰</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>賭博障礙的神經認知功能：與其他精神疾病及共病症的比較系統性回顧</h3>
+          <p class="journal-source">Psychiatry research</p>
+          <p>系統性回顧30篇研究發現，賭博障礙合併ADHD時認知損害最嚴重，合併OCD時亦有顯著缺損，支持重新思考跨疾病的認知評估框架。</p>
+          <div class="card-footer">
+            <span class="tag">認知控制</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41689912/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧩</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>年輕成人多種精神疾病中的計畫與問題解決能力</h3>
+          <p class="journal-source">Journal of psychiatric research</p>
+          <p>跨診斷研究（658名年輕成人）發現OCD在問題解決準確度上呈現大效果量缺損（z=-1.32），僅次於拔毛症，支持計畫與問題解決缺損為跨疾病但程度不同的特徵。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">拔毛症</span><span class="tag">認知控制</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41650567/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🏴‍☠️</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>懲罰學習任務中個體差異的複製，但與非臨床樣本之行為無對應關係</h3>
+          <p class="journal-source">Journal of behavior therapy and experimental psychiatry</p>
+          <p>成功複製懲罰敏感度三種分類（敏感型、不知型、強迫型），但這些分類與自陳式OCD症狀等皆無顯著關聯，顯示該任務目前尚不適合用於臨床轉譯。</p>
+          <div class="card-footer">
+            <span class="tag">習慣學習</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41666680/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧿</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>精神病理學中的魔幻接觸信念：認知機制與維持因素回顧</h3>
+          <p class="journal-source">Journal of behavior therapy and experimental psychiatry</p>
+          <p>敘述性回顧提出理論模型，闡明污染源特徵、個體脆弱因子與認知扭曲如何交互作用放大主觀污染經驗，為OCD、創傷相關障礙及儲物症等之象徵性污染信念提供跨疾病整合框架。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">儲物症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41418619/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔊</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>強迫傾向預測對聽覺刺激情感反應的減弱接取</h3>
+          <p class="journal-source">Journal of behavior therapy and experimental psychiatry</p>
+          <p>研究支持SPIS模型核心主張，發現強迫傾向越高者對正向與負向聽覺刺激的情感評定與常模偏差越大，反映內在狀態接取能力減弱。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41371197/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⏱️</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>強迫症患者的時間知覺障礙</h3>
+          <p class="journal-source">European archives of psychiatry and clinical neuroscience</p>
+          <p>先導研究發現OCD患者在時間知識、時間知覺及時間管理上均顯著差於健康對照，強迫行為嚴重度與時間管理障礙呈顯著正相關（r=0.641），建議將時間體驗納入精神病理學探討。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42053593/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🍽️</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>從控制、強迫與獎賞的視角重新思考神經性厭食症：多巴胺、內源性大麻素與食慾素系統的成癮樣特徵</h3>
+          <p class="journal-source">Neuroscience and biobehavioral reviews</p>
+          <p>敘述性回顧整合心理學與神經生物學證據，提出「飢餓驅動成癮樣特徵模型」，將厭食症置於成癮與強迫光譜的交叉點，與OCD在強迫性與習慣形成上有概念重疊但非OCD核心研究。</p>
+          <div class="card-footer">
+            <span class="tag">習慣學習</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41763342/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">強迫症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">12</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">兒少強迫症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">暴露與反應預防</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">ERP</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">CBT</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">自殺風險</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">生物標記</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">接納承諾治療</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">神經調控</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">眼眶額葉皮質</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">習慣學習</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:33%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">認知控制</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">拔毛症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">儲物症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">系統性回顧/統合分析</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">SSRI</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">網路治療</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">CSTC 迴路</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">治療阻抗型OCD</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">1</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">兒少OCD</span><span class="keyword">ERP</span><span class="keyword">低強度CBT</span><span class="keyword">自殺風險</span><span class="keyword">生物標記</span><span class="keyword">ACT</span><span class="keyword">內源性大麻素</span><span class="keyword">過度概括記憶</span><span class="keyword">認知靈活度</span></div></div>
+
+  <div class="clinic-banner">
+    <div class="clinic-links">
+      <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">🏥</span>
+        <div class="clinic-info">
+          <div class="clinic-name">李政洋身心診所首頁</div>
+          <div class="clinic-desc">專業身心科診療服務</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+      <a href="https://blog.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">📬</span>
+        <div class="clinic-info">
+          <div class="clinic-name">訂閱電子報</div>
+          <div class="clinic-desc">定期接收最新身心健康資訊</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed · 分析模型：GLM-5-Turbo</span>
+    <span><a href="https://github.com/u8901006/ocd-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
