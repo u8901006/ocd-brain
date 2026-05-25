@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OCD Brain · 強迫症文獻日報 · 2026年5月25日</title>
+<meta name="description" content="2026年5月25日 強迫症 (OCD) 文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 52px; height: 52px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 120px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.3s both; }
+  .clinic-links { display: flex; flex-direction: column; gap: 12px; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-info { flex: 1; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 80px; font-size: 11px; } .clinic-links { gap: 8px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🧠</div>
+    <div class="header-text">
+      <h1>OCD Brain · 強迫症文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年5月25日</span>
+        <span class="badge badge-count">📊 7 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + Zhipu AI</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日 OCD 文獻趨勢</h2>
+    <p class="summary-text">今日 OCD 文獻聚焦於治療預測因子與症狀異質性兩大核心議題。最值得注意的是，反芻思考未能改善會顯著削弱 ERP 的療效，而合併酒癮的 OCD 患者對 SSRI 的反應較差，這兩項發現對臨床治療策略有直接影響。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">🧠</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>開始重視「思考」：反芻思考對暴露與反應預防中強迫症狀改善的影響</h3>
+          <p class="journal-source">Journal of Anxiety Disorders · We need to start thinking about thinking: The impact of rumination on OCD symptom improvement in exposure and response prevention.</p>
+          <p>在 315 名接受 ERP 治療的 OCD 患者中，反芻思考未改善者其強迫症狀的每週改善幅度顯著較差，顯示反芻思考作為情緒逃避策略可能獨立於強迫症狀之外，需在治療中直接處理。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">315 名接受 ERP 治療的 OCD 成年患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">評估治療期間反芻思考的變化及其與強迫症狀軌跡的關聯</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">反芻思考改善程度較高與較低的患者相比</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">反芻思考改善較少者，其每週 OCD 症狀改善幅度顯著較差（RI-CLPM 模型證實跨週期的交叉滯後效應）</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">暴露與反應預防</span><span class="tag">ERP</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41990425/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">🍺</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>強迫症中的酒癮共病研究</h3>
+          <p class="journal-source">Journal of Psychiatric Research · A study of alcohol dependence in obsessive-compulsive disorder.</p>
+          <p>在 1222 名 OCD 患者中，13% 有終身酒癮史，這些患者接受 SSRI 治療的比例較低且治療反應較差，強調臨床上必須主動篩檢酒癮共病。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">1222 名 OCD 成年患者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">有終身酒癮病史（DSM-IV 標準）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">無酒癮病史的 OCD 患者</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">酒癮組接受 SSRI 治療比例顯著較低，且治療反應良好率顯著較差；同時合併更多情感障礙症、焦慮症及物質依賴</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">SSRI</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41950712/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">😄</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>後設內在幽默療法：三臂隨機對照試驗對共病情緒障礙症的見解</h3>
+          <p class="journal-source">Journal of Anxiety Disorders · The meta-inner humor therapy: Insights from a three-arm randomized controlled trial for comorbid emotional disorders.</p>
+          <p>後設內在幽默療法（MIHT）在三臂 RCT 中對包含 OCD 在內的共病情緒障礙症顯示優於健康促進計畫與等待名單的療效，其作用機轉透過改變後設內在幽默信念減少重複負向思考。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">93 名具有至少一項主要 DSM-5 焦慮、憂鬱或強迫症診斷的成人（平均共病 2.4 項）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">10 週團體後設內在幽默療法（MIHT）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">健康促進計畫（HEP）或等待名單對照</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">MIHT 在焦慮、憂鬱、壓力及強迫症狀上均顯著優於兩組對照，效果在 9 個月追蹤時仍顯著，且後設內在幽默信念的改變獨立於正念改善預測症狀減輕</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">後設認知治療</span><span class="tag">臨床試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41864065/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">📊</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>靜息態 alpha 與 beta 振盪爆發特徵與自發性及反應性強迫思考的差異性關聯</h3>
+          <p class="journal-source">Journal of Psychiatric Research · Resting-state burst features within alpha and beta oscillations are differentially associated with autogenous and reactive obsessions.</p>
+          <p>自發性強迫思考與左側枕葉 alpha 爆發持續時間延長相關（反映過度注意力控制），反應性強迫思考則與右側頂葉 beta 爆發頻率增加相關（反映過度運動啟動），為 OCD 異質性提供神經生理學依據。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">83 名年輕成人（類臨床樣本）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">5 分鐘閉眼靜息態腦電圖記錄，分析各頻帶振盪爆發的速率、功率、持續時間及頻率跨度</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">自發性強迫思考（AO）與反應性強迫思考（RO）嚴重程度的差異比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">AO 嚴重度與左側枕葉 alpha 爆發持續時間正相關；RO 嚴重度與右側頂葉 beta 爆發速率正相關</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">神經影像</span><span class="tag">生物標記</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42019363/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">🪞</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>身體畸形症患者的人格特質與人格障礙症：系統性文獻回顧</h3>
+          <p class="journal-source">Journal of Psychiatric Research · Personality traits and disorders in people with body dysmorphic disorder (BDD): A systematic review.</p>
+          <p>涵蓋 26 項研究 1382 名 BDD 患者的系統性回顧發現，迴避型人格障礙症最常見，其次為強迫型人格障礙症，患者普遍有低自尊、高羞恥感及人際困難，這些特徵可能導致 BDD 誤診。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">26 項研究中 1382 名符合當前 BDD 診斷的參與者</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">系統性回顧人格特質與人格障礙症的盛行率及特徵</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">無對照組（系統性回顧）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">最常見共病人格障礙症為迴避型，其次為強迫型；BDD 患者普遍呈現低自尊、高羞恥感、拒絕敏感及社交抑制</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">身體畸形症</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42127601/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🌿</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>藥用植物治療強迫症：植物療法途徑的回顧</h3>
+          <p class="journal-source">Journal of Psychiatric Research</p>
+          <p>系統性回顧 26 項植物療法研究（14 項動物、12 項臨床），雖部分植物化合物顯示調節血清素、多巴胺及 GABA 系統的潛力，但臨床證據品質低且樣本小，目前不支持將植物療法用於 OCD 常規治療。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42119553/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🤧</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>精神健康障礙症與過敏反應的關聯：多中心回顧性分析</h3>
+          <p class="journal-source">Journal of Psychiatric Research</p>
+          <p>分析 71,725 名患者資料發現，精神科診斷與過敏記錄數量呈顯著正相關，其中強迫症相關障礙症的關聯強度居第三（B=0.798），僅次於身體症狀障礙症及創傷壓力障礙症。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42033877/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">強迫症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">5</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">暴露與反應預防</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">SSRI</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">神經影像</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">身體畸形症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">後設認知治療</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">系統性回顧/統合分析</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:40%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">生物標記</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">臨床試驗</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">1</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">反芻思考</span><span class="keyword">ERP療效預測</span><span class="keyword">酒癮共病</span><span class="keyword">SSRI反應</span><span class="keyword">AO-RO分類</span><span class="keyword">腦電圖爆發特徵</span><span class="keyword">後設內在幽默療法</span><span class="keyword">身體畸形症</span><span class="keyword">人格障礙症</span></div></div>
+
+  <div class="clinic-banner">
+    <div class="clinic-links">
+      <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">🏥</span>
+        <div class="clinic-info">
+          <div class="clinic-name">李政洋身心診所首頁</div>
+          <div class="clinic-desc">專業身心科診療服務</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+      <a href="https://blog.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">📬</span>
+        <div class="clinic-info">
+          <div class="clinic-name">訂閱電子報</div>
+          <div class="clinic-desc">定期接收最新身心健康資訊</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed · 分析模型：GLM-5-Turbo</span>
+    <span><a href="https://github.com/u8901006/ocd-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
