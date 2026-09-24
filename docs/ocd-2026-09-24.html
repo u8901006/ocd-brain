@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OCD Brain · 強迫症文獻日報 · 2026年9月24日</title>
+<meta name="description" content="2026年9月24日 強迫症 (OCD) 文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 52px; height: 52px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 120px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.3s both; }
+  .clinic-links { display: flex; flex-direction: column; gap: 12px; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-info { flex: 1; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 80px; font-size: 11px; } .clinic-links { gap: 8px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🧠</div>
+    <div class="header-text">
+      <h1>OCD Brain · 強迫症文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年9月24日</span>
+        <span class="badge badge-count">📊 9 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + NVIDIA Nemotron</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日 OCD 文獻趨勢</h2>
+    <p class="summary-text">今日文獻聚焦於強迫症的多維度研究，涵蓋神經調控機制（如DBS靶點結構連接、下丘腦-多巴胺受體調控）、心理機制（不確定性 intolerence、執著與依戀）以及創新治療模式（Bergen 4-Day 治療）。關鍵亮點包括：首次闡述 OX1R/OX2R 在多巴胺神經元中的雙向調控作用，揭示其在強迫行為中的潛在角色；證實 DBS 不同靶點（NAc/ALIC、MFB、amSTN）具有患者特異性的結構連接模式，影響臨床療效；Bergen 4-Day 集中曝露療法被證實為高效、耐久的一線治療選擇。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">🧠</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>個體化結構連通圖揭示深部腦刺激目標在治療阻抗型強迫症患者中的差異</h3>
+          <p class="journal-source">Translational psychiatry · Patient-specific structural connectomic differences of deep brain stimulation targets in treatment-resistant obsessive-compulsive disorder patients.</p>
+          <p>研究證實 NAC/ALIC、MFB 和 amSTN 三個 DBS 常用靶點在結構連接模式上具有顯著差異，其中 NAC/ALIC 顯示較強的前額葉-邊緣系統連接，與情感、 salience、獎賞網絡相關，提供個體化靶點選擇的神經影像依據。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">22 名接受 NAC/ALIC DBS 治療的治療阻抗型強迫症患者（大學醫院科隆）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">以患者為中心的結構連通圖分析（基於擴散MRI的全腦概率傳導追蹤）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">三個 DBS 靶點（NAC/ALIC vs MFB vs amSTN）的結構連接 Profile</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">NAC/ALIC 表現出顯著更強的結構連接於 medial-orbitofrontal cortex、anterior cingulate、insula 和 accumbens（p < 0.0001），連接影響涉及 AN、SN、DMN 和 RMN 網絡；提示靶點選擇應基於個體連接特徵而非僅解剖位置</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">DBS 腦深層刺激</span><span class="tag">神經影像</span><span class="tag">CSTC 迴路</span><span class="tag">治療阻抗型OCD</span><span class="tag">精準精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42773124/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">🧪</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>下丘腦素/昏睡素受體1型與2型對多巴胺神經元的相反調控塑造強迫型行為</h3>
+          <p class="journal-source">Biological psychiatry · Divergent Modulation of Dopaminergic Neurons by Hypocretin/Orexin Receptors 1 and 2 Shapes Dopaminergic Cell Activity and Socioemotional Behavior.</p>
+          <p>利用轉基因小鼠模型發現，OXA 透過 OX1R 增強 VTA 多巴胺神經元放電，而 OXB 透過 OX2R 抑制放電；單獨缺失 OX1R 或 OX2R 均導致沖動與強迫類似行為，提示其在 OCD 相關內表型中的雙向調控角色。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">轉基因小鼠（DAOx1R-KO 和 DAOx2R-KO，選擇性刪除多巴胺細胞的 Hcrtr1 或 Hcrtr2）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">體外電生理測定 VTA 多巴胺神經元內在興奮性 + 行為測試（社會情感、認知領域）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">野生型 vs DAOx1R-KO vs DAOx2R-KO</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">OXA 增強、OXB 抑制多巴胺神經元放電；OX1R 缺失導致焦慮樣反應與情境依賴性多動；OX2R 缺失降低社交性並損害厭惡驅動學習；兩種受體缺失均誘發沖動與強迫類似行為</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">神經調控</span><span class="tag">多巴胺</span><span class="tag">遺傳學</span><span class="tag">沖動行為</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42320783/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">⏱️</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>Bergen 4-Day 強迫症治療：證據與實施的全面範圍審閱</h3>
+          <p class="journal-source">Acta psychiatrica Scandinavica · The Bergen 4-Day OCD Treatment: A Comprehensive Scoping Review of Evidence and Implementation.</p>
+          <p>基於 12 項研究的範疇性文獻審閱證實，Bergen 4-Day 治療（B4DT）能顯著減少 OCD 症狀，具有高應答與緩解率、高患者滿意度及持久療效（長期追蹤顯示極低復發），適合作為一線治療選擇。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">橫跨不同年齡、症狀嚴重程度及併存症的 OCD 患者（來自多國臨床樣本）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">Bergen 4-Day 治療（集中曝露與反應預防，4 天內完成等值於 12 個月週次 CBT 的療劑量）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">傳統週次 CBT、藥物治療或待機對照（根據納入研究而異）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">顯著減少 Y-BOCS 分數；高應答率（>50%）及緩解率（>35%）；患者滿意度高；長期追蹤（6-12 月）顯示治療效果耐久，復發率低</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">CBT</span><span class="tag">暴露與反應預防</span><span class="tag">ERP</span><span class="tag">治療模式</span><span class="tag">臨床試驗</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42495803/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">🔍</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>不確定性 intolerence 透過 'not just right' 經驗預測檢查行為：強迫症機制研究</h3>
+          <p class="journal-source">Cognitive behaviour therapy · Does it feel certain enough? Intolerance of uncertainty predicts checking behavior through 'not just right' experiences.</p>
+          <p>在 OCD 和焦慮症患者中，不確定性 intolerence (IU) 不僅增加對 'not just right' 經驗（NJREs）的敏感度，且透過 NJRE-related disturbance 間接延長檢查行為，證實 NJRE 是 IU 與強迫檢查之間的關鍵中介變數。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">164 名診斷為 OCD 和/或焦慮症的個體</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">行為檢查範式 + 實誘發 NJRE + 問卷測量 IU、NJREs 與檢查行為</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">高 IU vs 低 IU 群體；實誘發 NJRE vs 對照條件</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">IU 預測更多與更強烈的 NJREs；IU 與更長檢查行為之間的關聯透過 NJRE-related disturbance 完全中介（間接效顯著）</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">認知控制</span><span class="tag">不確定性 intolerence</span><span class="tag">not just right</span><span class="tag">檢查行為</span><span class="tag">焦慮症</span><span class="tag">認知行為治療</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41641741/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">🤝</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>當安全失效：強迫症患者依戀關係的敘事性文獻審閱</h3>
+          <p class="journal-source">Journal of psychiatric research · When safety fails: A narrative review on attachment in patients with obsessive-compulsive disorder.</p>
+          <p>系統性歸納證據顯示，OCD 患者中不安全型依戀（尤其是焦慮型和紊亂型）顯著增加；情緒調節受損、控制需求增高與責任過敏被識別為關鍵中介機制，支持將依戀導向評估與干預納入難治性 OCD 的綜合治療模式。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">OCD 患者（橫斷面與縱向研究樣本）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">依戀理論框架下的評估（如經驗式依戀問卷、成人附訪）與潛在干預（如以依戀為基礎的心理治療）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">安全型 vs 不安全型依戀（焦慮型、迴避型、紊亂型）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">不安全型依戀（尤其焦慮型 & 紊亂型）在 OCD 患者中顯著流行率更高；受損情緒調節、過度控制需求與高責任感介於早期依戀不安全與 OCD 症狀之間；臨床上支持整合依戀導向策略，特別是對 CBT/藥物無效者</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">依戀理論</span><span class="tag">發展 Psychopathology</span><span class="tag">情緒調節</span><span class="tag">治療阻抗型OCD</span><span class="tag">家庭調適</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42537591/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🎯</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>完美主義對心理健康障礙治療結果的影響：隨機對照試驗的系統性回顧</h3>
+          <p class="journal-source">Cognitive behaviour therapy</p>
+          <p>在 16 項 RCT 中，超過半數（56%）發現較高基線完美主義預測較差治療結果（特別是於兒少群體），提示臨床上應常規評估並幹預完美主義以提升療效。</p>
+          <div class="card-footer">
+            <span class="tag">完美主義</span><span class="tag">治療結果</span><span class="tag">系統性回顧/統合分析</span><span class="tag">兒少強迫症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40856635/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⚠️</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>Bergen 4-Day 治療：考量可及性與方法嚴謹性以框架研究結果</h3>
+          <p class="journal-source">Acta psychiatrica Scandinavica</p>
+          <p>評論指出儘管 Bergen 4-Day 治療效果佳，但需關注其在真實世界中的可及性（如地理、經濟、療師訓練）及研究方法質量（如缺乏對照組、樣本偏誤），避免過度樂觀解釋。</p>
+          <div class="card-footer">
+            <span class="tag">Bergen 4‐day treatment</span><span class="tag">系統性回顧/統合分析</span><span class="tag">臨床試驗</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42601211/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>精神疾病與胰島素抗性共病的多變量遺傳架構：OCD 顯示獨特負遺傳載荷</h3>
+          <p class="journal-source">European neuropsychopharmacology : the journal of the European College of Neuropsychopharmacology</p>
+          <p>透過基因結構方程模型發現，OCD 與 anorexia nervosa 顯示對 Psych-IR 潛在遺傳因子的負載荷，與 ADHD、MDD 與胰島素抗性相關疾病呈正負相關，提示 OCD 可能具有獨特的代謝調節特徵。</p>
+          <div class="card-footer">
+            <span class="tag">遺傳學</span><span class="tag">代謝</span><span class="tag">胰島素</span><span class="tag">精神免疫學</span><span class="tag">多變量遺傳分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42435748/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">⚠️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>首次診斷精神疾病個體自傷風險：香港16年領域電子健康紀錄研究顯示 OCD 中等風險</h3>
+          <p class="journal-source">European neuropsychopharmacology : the journal of the European College of Neuropsychopharmacology</p>
+          <p>在超過 300 萬人年追蹤中，首次診斷 OCD 個體的自傷事件發生率為 3.74 每 1000 人年（HR 3.74，95%CI 3.27-4.27），雖較其他精神疾病低，但顯著高於對照組，提示需將自傷風險評估納入 OCD 常規追蹤。</p>
+          <div class="card-footer">
+            <span class="tag">自殺風險</span><span class="tag">電子健康紀錄</span><span class="tag">流行病學</span><span class="tag">強迫症</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42134004/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">強迫症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">8</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">ERP</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:37%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">DBS 腦深層刺激</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:12%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">不確定性 intolerence</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:12%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">依戀理論</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:12%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">暴露與反應預防</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:37%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">CBT</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:37%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">治療阻抗型OCD</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:37%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">神經影像</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:12%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">CSTC 迴路</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:12%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">精準精神醫學</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:12%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">系統性回顧/統合分析</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:37%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">認知行為治療</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:37%"></div></div>
+              <span class="topic-count">3</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">DBS</span><span class="keyword">Bergen 4-Day</span><span class="keyword">不確定性 intolerence</span><span class="keyword">依戀理論</span><span class="keyword">素/昏睡素</span><span class="keyword">結構連通圖</span><span class="keyword">治療阻抗型OCD</span></div></div>
+
+  <div class="clinic-banner">
+    <div class="clinic-links">
+      <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">🏥</span>
+        <div class="clinic-info">
+          <div class="clinic-name">李政洋身心診所首頁</div>
+          <div class="clinic-desc">專業身心科診療服務</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+      <a href="https://blog.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">📬</span>
+        <div class="clinic-info">
+          <div class="clinic-name">訂閱電子報</div>
+          <div class="clinic-desc">定期接收最新身心健康資訊</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed · 分析模型：nvidia/nemotron-3-super-120b-a12b</span>
+    <span><a href="https://github.com/u8901006/ocd-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
