@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OCD Brain · 強迫症文獻日報 · 2026年11月4日</title>
+<meta name="description" content="2026年11月4日 強迫症 (OCD) 文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 52px; height: 52px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 120px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.3s both; }
+  .clinic-links { display: flex; flex-direction: column; gap: 12px; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-info { flex: 1; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 80px; font-size: 11px; } .clinic-links { gap: 8px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🧠</div>
+    <div class="header-text">
+      <h1>OCD Brain · 強迫症文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年11月4日</span>
+        <span class="badge badge-count">📊 25 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + NVIDIA Nemotron</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日 OCD 文獻趨勢</h2>
+    <p class="summary-text">今日文獻聚焦於 OCD 的異質性解析與精準治療策略。亮點包括：基於症狀網路的三亞型分類並連結神經影像與分子特徵、DBS 針對治療抵抗型 OCD 與兒童自傷行為的長期療效證據、非侵入性腦刺激（arTMS、rTMS、tDCS）的網路統合分析確立有效協定、以及認知僵化對心理治療依從性的預測價值。整體趨勢從單一診斷轉向跨診斷、電路導向、分期導向的精準醫學框架。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">🧠</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>基於個體症狀網路的 OCD 亞型分類：亞型特異性神經動力學、形態相似性與分子特徵</h3>
+          <p class="journal-source">Molecular Psychiatry · Subtyping OCD based on individual symptom networks: subtype-specific neural dynamics and morphometric similarity linked to molecular profiles</p>
+          <p>利用個體症狀網路識別出三種可跨樣本、跨量表、跨時間重現的 OCD 亞型（檢查/強迫念、排序/洗滌、囤積），並發現其獨特的腦網路動態、形態相似性與神經遞質/轉錄組特徵，為精準診療提供生物學基礎。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">OCD 患者（發現隊列 n=238，驗證隊列 n=79 等）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">個體症狀網路 (ISN) 分析結合神經影像 (fMRI、sMRI) 與轉錄組數據</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">健康對照組 (n=3227) 及不同 OCD 亞型間比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">三種穩定亞型；亞型 1 顯示視覺-前額頂葉控制網路轉換頻繁、DMN 形態相似性較高；亞型 2 顯示額下回/中央後回內在活性增加；轉錄組關聯 IL-1β、TNF-α、GABAa、μ-opioid 受體</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">神經影像</span><span class="tag">精準精神醫學</span><span class="tag">生物標記</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42365100/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">⚡</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>針對治療抵抗型 OCD 的導管導向深腦刺激程式設計：個案報告與文獻回顧</h3>
+          <p class="journal-source">Biological Psychiatry · Tractography-Guided Deep Brain Stimulation Programming in Treatment-Resistant Obsessive-Compulsive Disorder: A Case Report and Review of the Literature</p>
+          <p>展示如何利用擴散張量影像導管追蹤優化 DBS 電極接點選擇與參數設定，精準調節 CSTC 迴路，為難治性 OCD 提供個體化神經調控新策略。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">治療抵抗型 OCD 患者（單一個案）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">導管導向 DBS 程式設計（針對腹側囊/腹側紋狀體與內囊前肢白質導管）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">標準 DBS 程式設計流程（文獻回顧對比）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">症狀顯著改善（Y-BOCS 大幅下降），驗證精準靶向調節特定白質束（如前扣帶回-紋狀體投射）的臨床獲益</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">治療阻抗型OCD</span><span class="tag">DBS 腦深層刺激</span><span class="tag">神經調控</span><span class="tag">CSTC 迴路</span><span class="tag">前扣帶迴</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42817026/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">👶</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>針對嚴重自傷行為兒童的伏隔核深腦刺激：首創人體試驗的長期結果</h3>
+          <p class="journal-source">Molecular Psychiatry · Deep brain stimulation of the nucleus accumbens for severe self-injurious behaviour in children: long-term outcomes from a first-in-human pilot trial</p>
+          <p>首個針對深度自閉症合併難治性自傷行為兒童的伏隔核 DBS 長期追蹤研究（平均 32.5 個月），證實持續減少自傷、重複強迫行為並改善生活品質，且裝置感染後再植入快速恢復提供因果證據。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">6 位 7-14 歲深度自閉症合併難治性自傷行為兒童/青少年</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">雙側伏隔核 (NAc) 深腦刺激</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">基線狀態（組內前後比較）及裝置移除期間（單一受試者撤離-再挑戰設計）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">自傷頻率/嚴重度持續下降、重複強迫行為減少、生活品質臨床意義改善；一例感染移除後復發，再植入後快速改善</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">DBS 腦深層刺激</span><span class="tag">神經調控</span><span class="tag">自閉症與OCD</span><span class="tag">兒少強迫症</span><span class="tag">紋狀體</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42332026/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">🧲</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>非侵入性腦刺激治療 OCD 的療效：隨機對照試驗網路統合分析</h3>
+          <p class="journal-source">Psychiatry Research · The efficacy of non-invasive brain stimulation interventions in obsessive-compulsive disorder management: A network meta-analysis of randomized controlled trials</p>
+          <p>納入 42 項 RCT (n=1456) 的貝氏網路統合分析，確立五種顯著優於假刺激的 NIBS 協定（高頻 rTMS-FzFCz、低頻 rTMS-F3F4、低頻 rTMS-FCz、高頻 dTMS-FzFC、2mA 陽極 tDCS-F3/Fp2），其中高頻 dTMS 對共病憂鬱/焦慮改善最大。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">OCD 患者（含治療抵抗與非抵抗）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">五種有效 NIBS 協定（rTMS、dTMS、tDCS 不同參數/靶點）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">假刺激對照</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">Y-BOCS 顯著下降（MD -3.25 至 -11.77）；高頻 dTMS-FzFCz 並最大幅改善憂鬱 (SMD -1.24) 與焦慮 (SMD -1.88)</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">rTMS</span><span class="tag">神經調控</span><span class="tag">系統性回顧/統合分析</span><span class="tag">治療阻抗型OCD</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42612477/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">🔬</span>
+            <span class="utility-high">高實用性</span>
+          </div>
+          <h3>腦損傷與特發性 OCD 的功能失調迴路重疊：損傷網路定圖研究</h3>
+          <p class="journal-source">Biological Psychiatry · Dysfunctional Brain Circuits Overlap in Lesional and Idiopathic Obsessive-Compulsive Disorder</p>
+          <p>分析 40 例明確定位的腦損傷相關 OCD 個案，發現損傷位點聚集於眶額皮質與右顳極，並連結至一特定大腦網路，該網路與特發性 OCD 的功能影像異常及有效 DBS/rTMS 靶點高度重疊，確立因果電路模型。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">腦損傷後 OCD 個案 (n=40) 與對照損傷 (n=608)</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">損傷網路定圖 (lesion network mapping) 基於標準化功能連結組 (n=1000)</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">非 OCD 相關腦損傷對照組</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">OCD 相關損傷網路與特發性 OCD 影像異常、有效 DBS/rTMS 靶點顯著重疊，確認共同因果迴路</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">神經影像</span><span class="tag">DBS 腦深層刺激</span><span class="tag">rTMS</span><span class="tag">CSTC 迴路</span><span class="tag">眼眶額葉皮質</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42119759/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#6</span>
+            <span class="emoji-icon">⚡</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>加速重複經顱磁刺激在神經精神疾病中的領域特異性療效：系統性回顧與統合分析</h3>
+          <p class="journal-source">Biological Psychiatry · Domain-Specific Efficacy of Accelerated Repetitive Transcranial Magnetic Stimulation in Neuropsychiatric Disorders: A Systematic Review and Meta-Analysis</p>
+          <p>納入 44 項 RCT (N=1671) 發現加速 rTMS (arTMS) 對憂鬱 (g=0.61)、焦慮 (g=0.43)、OCD 症狀 (g=0.45)、工作記憶 (g=0.45) 及宣告性記憶 (g=0.30) 均有顯著跨診斷療效，且療程壓縮、安全性佳，劑量與性別為關鍵調節因子。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">多種神經精神疾病患者（含 OCD、MDD、焦慮症等）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">加速重複經顱磁刺激 (arTMS, ≥2 sessions/day)</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">假刺激對照</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">OCD 症狀中等效價 (g=0.45, 95% CI 0.02-0.88)；刺激頻率、間隔、累積劑量、年齡、性別顯著調節療效</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">rTMS</span><span class="tag">神經調控</span><span class="tag">系統性回顧/統合分析</span><span class="tag">精準精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41338357/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#7</span>
+            <span class="emoji-icon">🧩</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>認知僵化預測強迫/強迫相關障礙患者心理治療依從性不佳</h3>
+          <p class="journal-source">Journal of Psychiatric Research · Stuck in thought, stuck in therapy: Does Cognitive inflexibility adversely affect treatment adherence among disorders characterised by obsessive and compulsive symptoms</p>
+          <p>橫斷面研究 (N=201) 發現認知僵化與心理治療依從性差顯著相關，但與藥物依從性無關；心理健康與男性性別預測較好依從性，提示認知僵化可作為個體化治療規劃的生物標記。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">接受過心理健康治療的 OCRD 或飲食障礙患者 (N=201)</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">認知僵化評估 (自我報告量表)</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">高 vs. 低認知僵化組</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">認知僵化預測心理治療依從性差 (p<.05)；不預測藥物依從性；心理健康與男性預測良好依從性</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">CBT</span><span class="tag">暴露與反應預防</span><span class="tag">認知控制</span><span class="tag">生物標記</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42976551/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#8</span>
+            <span class="emoji-icon">🧬</span>
+            <span class="utility-mid">中實用性</span>
+          </div>
+          <h3>OCD 最大規模甲基組關聯研究：發現 35 個差異甲基化位點與性別特異性特徵</h3>
+          <p class="journal-source">Biological Psychiatry · Methylome-Wide Association Study of Obsessive-Compulsive Disorder</p>
+          <p>最大規模 OCD EWAS (唾液 DNA, 414 病例 vs 384 對照) 鑑定 35 DMPs、17 DMRs，涉及神經傳遞、神經發育、突觸功能基因；性別分層揭示額外性別特異性訊號；多數位點受遺傳變異調節 (mQTL)；免疫相關基因提示發炎參與。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">成人 OCD 患者 (n=414) 與健康對照 (n=384)</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">Illumina EPICv2 陣列全甲基組分析</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">病例對照比較；性別分層分析</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">35 DMPs、17 DMRs 關聯 OCD；性別特異性甲基化差異；mQTL 整合顯示遺傳調節；腦-唾液甲基化相關支持腦相關性</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">生物標記</span><span class="tag">遺傳學</span><span class="tag">發炎</span><span class="tag">精準精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41956236/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💡</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>從腦損傷到治療靶點：匯聚於 OCD 的因果迴路</h3>
+          <p class="journal-source">Biological Psychiatry</p>
+          <p>評論文章，呼應 Cotovio 等人發現，強調損傷網路定圖可連結因果迴路與治療靶點，推動精準神經調控。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">DBS 腦深層刺激</span><span class="tag">rTMS</span><span class="tag">CSTC 迴路</span><span class="tag">精準精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42815997/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💡</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>OCD 的表觀遺傳特徵與性別特異性架構</h3>
+          <p class="journal-source">Biological Psychiatry</p>
+          <p>評論 Hoffler 等人的 EWAS 研究，討論表觀遺傳發現對 OCD 異質性、性別差異與精準醫學的啟示。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">生物標記</span><span class="tag">遺傳學</span><span class="tag">精準精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42815995/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💡</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>強迫症與相關障礙的遺傳學：我們到達了嗎？</h3>
+          <p class="journal-source">Biological Psychiatry</p>
+          <p>綜述 OCD/OCRD 遺傳學進展（GWAS、罕見變異、多基因評分），討論臨床轉譯差距與未來方向。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">遺傳學</span><span class="tag">精準精神醫學</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42815994/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔬</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>治療抵抗型憂鬱與 OCD 患者腹側被蓋區局部場電位特徵</h3>
+          <p class="journal-source">Biological Psychiatry</p>
+          <p>探討 VTA 神經生理特徵作為 DBS 靶點或生物標記的潛力，屬基礎神經生理學研究。</p>
+          <div class="card-footer">
+            <span class="tag">治療阻抗型OCD</span><span class="tag">DBS 腦深層刺激</span><span class="tag">神經調控</span><span class="tag">生物標記</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42061635/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🐀</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>目標導向應對行為主要由信號追蹤者發展，並被慢性阿托莫西汀惡化</h3>
+          <p class="journal-source">Biological Psychiatry</p>
+          <p>動物模型研究發現信號追蹤特質預測強迫性應對行為發展，慢性阿托莫西汀反而惡化既存強迫行為並改變纹狀體/杏仁核轉錄組，揭示去甲腎上腺素機制的雙向角色。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">習慣學習</span><span class="tag">神經調控</span><span class="tag">動物模型</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40706970/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>普瑞德-威利症候群作為精神病與 OCD 的神經遺傳模型：臨床、行為與生物學洞察綜述</h3>
+          <p class="journal-source">Journal of Psychiatric Research</p>
+          <p>綜述 PWS 作為 15q11-q13 印痕缺陷模型，連結母源單親雙倍體與精神病、血清素-催產素失衡與 OCD 表型，提供精準醫學框架。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">遺傳學</span><span class="tag">自閉症與OCD</span><span class="tag">精準精神醫學</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42710440/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">👁️</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>注視固定穩定性作為重大精神疾病的跨診斷標記：高密度家系研究</h3>
+          <p class="journal-source">Psychiatry Research</p>
+          <p>眼動追蹤研究 (n=449 患者含 98 OCD) 發現注視固定穩定性在干擾條件下於精神分裂症與雙相障礙受損最嚴重，OCD 無顯著差異；非受影響一級親屬與健康對照無異，提示為疾病相關而非內表型標記。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">生物標記</span><span class="tag">神經影像</span><span class="tag">跨診斷</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42700489/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🩸</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>OCD 患者 oxLDL 與 LOX-1 水平評估</h3>
+          <p class="journal-source">Psychiatry Research</p>
+          <p>病例對照研究 (67 OCD vs 37 對照) 發現血清 LOX-1 與 oxLDL 顯著低於對照組，NLR 升高；方向與假設相反，多數患者用藥中，需無藥物研究釐清。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">生物標記</span><span class="tag">發炎</span><span class="tag">氧化壓力</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42617302/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📋</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>從指引到缺口：CANMAT-ICOCS OCD 指南與分期導向跨診斷框架的必要性</h3>
+          <p class="journal-source">Journal of Psychiatric Research</p>
+          <p>評論 2025 CANMAT-ICOCS 指南，指出缺口：高風險表型識別、急性/危及生命表現、重度難治性患者緩和照護、分期導向跨診斷框架。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">治療阻抗型OCD</span><span class="tag">精準精神醫學</span><span class="tag">臨床指南</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42607538/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">📱</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>數位強制量表 (DCS) 之發展及其與自殺危機症候群 (SCS) 的關聯</h3>
+          <p class="journal-source">Journal of Psychiatric Research</p>
+          <p>開發 DCS 測量數位自主感喪失 (α=0.925)，五因子結構解釋 65.4% 變異；DCS 與憂鬱、OCD 症狀、SCS 相關，社交退縮與 PHQ-9 獨立預測 DCS，與自殺意念無關。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">自殺風險</span><span class="tag">數位表型</span><span class="tag">量表開發</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42585824/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🌍</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>卡達 OCD 流行病學：全國代表性調查發現</h3>
+          <p class="journal-source">Psychiatry Research</p>
+          <p>卡達全國調查 (N=2583) 終身盛行率 2.9%，女性較高 (3.8% vs 2.3%)；最常見症狀為檢查 (68.2%)、宗教潔癖 (65.7%)、清潔 (60.0%)；91% 合併精神疾病（PTSD 71.3%、情緒障礙 68.5%）；女性功能受損較重。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">流行病學</span><span class="tag">共病</span><span class="tag">文化精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42580013/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">👁️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>污染恐懼與檢查症狀的注意偏向：眼動追蹤研究</h3>
+          <p class="journal-source">Journal of Behavior Therapy and Experimental Psychiatry</p>
+          <p>大學生樣本 (HCF/LCF, HC/LC 各 n=10) 眼動追蹤顯示：污染恐懼組對厭惡圖片呈現警覺-迴避模式（維持階段注視減少）；檢查提示引發快速定向與持續注視，但症狀組間無差異，支持症狀維度特異性認知偏向。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">CBT</span><span class="tag">認知行為治療</span><span class="tag">注意偏向</span><span class="tag">眼動追蹤</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42472517/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔍</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>不確定性耐受性低透過『不剛好』體驗預測檢查行為</h3>
+          <p class="journal-source">Cognitive Behaviour Therapy</p>
+          <p>OCD/焦慮症患者 (N=164) 實驗範式驗證：IU → NJRE 困擾 → 檢查行為增加的中介路徑，支持針對 IU 與 NJRE 的跨診斷治療策略。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">CBT</span><span class="tag">認知行為治療</span><span class="tag">不確定性耐受性</span><span class="tag">檢查行為</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41641741/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🎯</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>完美主義對精神障礙治療結果的影響：RCT 系統性回顧</h3>
+          <p class="journal-source">Cognitive Behaviour Therapy</p>
+          <p>16 項 RCT (N=2197) 回顧：56% 研究發現基線完美主義預測較差治療結果 (含 3 項 OCD 研究)，兒童/青少年研究 4/5 呈負面影響；建議臨床評估並處理完美主義。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">CBT</span><span class="tag">完美主義</span><span class="tag">治療預後</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40856635/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💊</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>精神疾病中強迫症狀、氯氮平與其他抗精神病藥治療的關聯：系統性回顧與統合分析</h3>
+          <p class="journal-source">Neuroscience and Biobehavioral Reviews</p>
+          <p>32 項研究統合分析：氯氮平組 OCD 盛行率顯著高於非氯氮平組 (25% vs 12%)，OCS 盛行率無顯著差異；新發 OCS/OCD 組間無差異；縱向證據缺乏，需謹慎解釋因果關係。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">藥物增效</span><span class="tag">clomipramine</span><span class="tag">抗精神病藥</span><span class="tag">共病</span><span class="tag">系統性回顧/統合分析</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42976969/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧩</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>針對不適應重複行為的神經介入跨診斷框架</h3>
+          <p class="journal-source">Neuroscience and Biobehavioral Reviews</p>
+          <p>綜述藥物、非侵入/侵入式腦刺激、行為干預、AI 數位療法等多層級干預策略，提出分期框架：習慣迴路抑制→替代學習→鞏固→持續管理，強調組合干預優於單一技術。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">神經調控</span><span class="tag">DBS 腦深層刺激</span><span class="tag">rTMS</span><span class="tag">習慣學習</span><span class="tag">精準精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42735735/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧬</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>一般族群外顯化與內隱化特質的遺傳架構及其與精神疾病和幸福感的關聯：多變量方法</h3>
+          <p class="journal-source">European Neuropsychopharmacology</p>
+          <p>基因組結構方程模型分析 13 GWAS (n=64K-1.2M) 識別外顯化 (184 loci) 與內隱化 (31 loci) 基因座；內隱化與 OCD、神經性厭食症有顯著遺傳相關；多基因評分關聯情緒幸福感。</p>
+          <div class="card-footer">
+            <span class="tag">強迫症</span><span class="tag">遺傳學</span><span class="tag">跨診斷</span><span class="tag">精準精神醫學</span><span class="tag">生物標記</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42679763/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">強迫症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">25</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">神經調控</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:32%"></div></div>
+              <span class="topic-count">8</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">DBS 腦深層刺激</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">5</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">rTMS</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">5</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">精準精神醫學</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">5</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">生物標記</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:20%"></div></div>
+              <span class="topic-count">5</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">遺傳學</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">系統性回顧/統合分析</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">CBT</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:16%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">治療阻抗型OCD</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:12%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">表觀遺傳學</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">共病</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:8%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">兒少強迫症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:4%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">自閉症與OCD</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:4%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">文化精神醫學</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:4%"></div></div>
+              <span class="topic-count">1</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">強迫症</span><span class="keyword">精準精神醫學</span><span class="keyword">神經調控</span><span class="keyword">DBS 腦深層刺激</span><span class="keyword">rTMS</span><span class="keyword">亞型分類</span><span class="keyword">生物標記</span><span class="keyword">遺傳學</span><span class="keyword">表觀遺傳學</span><span class="keyword">認知僵化</span><span class="keyword">治療依從性</span><span class="keyword">氯氮平</span><span class="keyword">跨診斷</span><span class="keyword">分期模型</span></div></div>
+
+  <div class="clinic-banner">
+    <div class="clinic-links">
+      <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">🏥</span>
+        <div class="clinic-info">
+          <div class="clinic-name">李政洋身心診所首頁</div>
+          <div class="clinic-desc">專業身心科診療服務</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+      <a href="https://blog.leepsyclinic.com/" class="clinic-link" target="_blank">
+        <span class="clinic-icon">📬</span>
+        <div class="clinic-info">
+          <div class="clinic-name">訂閱電子報</div>
+          <div class="clinic-desc">定期接收最新身心健康資訊</div>
+        </div>
+        <span class="clinic-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed · 分析模型：nvidia/nemotron-3-ultra-550b-a55b</span>
+    <span><a href="https://github.com/u8901006/ocd-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
